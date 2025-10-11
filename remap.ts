@@ -12,8 +12,8 @@
 */
 
 const REGEXES = {
-	moveStrafe: /player.serverMoveStrafe=player\.([a-zA-Z]*)/m,
-	moveForward: /player.serverMoveForward=*player\.([a-zA-Z]*)/m,
+	moveStrafe: /player\.serverMoveStrafe=player\.([a-zA-Z]+)/m,
+	moveForward: /player\.serverMoveForward=player\.([a-zA-Z]+)/m,
 	keyPressedPlayer: /function ([a-zA-Z]*)\(([a-zA-Z]*)\) \{\n\t*return keyPressed/m,
 	// World#getLivingEntityCount
 	entities: /this\.([a-zA-Z]*)\.values\(\)\) [a-zA-Z]* instanceof EntityLiving/m,
