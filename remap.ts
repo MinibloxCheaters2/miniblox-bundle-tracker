@@ -20,6 +20,12 @@ const REGEXES = {
 	moveStrafe: /this\.([a-zA-Z]+)\s*=\s*\([a-zA-Z]+\.right/,
 	moveForward: /this\.([a-zA-Z]+)\s*=\s*\([a-zA-Z]+\.(up|down)/,
 	keyPressedPlayer: /function ([a-zA-Z]*)\(([a-zA-Z]*)\)\s*\{\n*\t*return keyPressed/m,
+	// PathNavigateGround#isPositionClear
+	iterator: /of\s+BlockPos\.([a-zA-Z]+)\(/,
+	// EntityBoat#update
+	normalizeAngle: /([a-zA-Z]+)\(([a-zA-Z]+)\s*-\s*this.yaw\)/,
+	// PlayerMovement#checkHeadInBlock
+	position: /BlockPos\.fromVector\(controls\.([a-zA-Z]+)\)/;
 	// World#getLivingEntityCount
 	entities: /this\.([a-zA-Z]*)\.values\(\)\)\s*[a-zA-Z]* instanceof EntityLiving/m,
 	isInvisible: /[a-zA-Z]+\.([a-zA-Z]*)\(\)\)\s*&&\n*\t*\([a-zA-Z]*\s*=\s*new\s+[a-zA-Z]*\(/m,
