@@ -17,8 +17,8 @@
  * The 1st match is the name used.
  */
 const REGEXES = {
-	moveStrafe: /this\.([a-zA-Z]+)\s*=\s*\([a-zA-Z]+\.right/g,
-	moveForward: /this\.([a-zA-Z]+)\s*=\s*\([a-zA-Z]+\.(up|down)/g,
+	moveStrafe: /this\.([a-zA-Z]+)\s*=\s*\([a-zA-Z]+\.right/,
+	moveForward: /this\.([a-zA-Z]+)\s*=\s*\([a-zA-Z]+\.(up|down)/,
 	keyPressedPlayer: /function ([a-zA-Z]*)\(([a-zA-Z]*)\)\s*\{\n*\t*return keyPressed/m,
 	// World#getLivingEntityCount
 	entities: /this\.([a-zA-Z]*)\.values\(\)\)\s*[a-zA-Z]* instanceof EntityLiving/m,
