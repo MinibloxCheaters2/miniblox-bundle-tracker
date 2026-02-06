@@ -12,12 +12,12 @@
 */
 
 const REGEXES = {
-	moveStrafe: /player\.serverMoveStrafe *= *player\.([a-zA-Z]+)/gm,
-	moveForward: /player\.serverMoveForward *= *player\.([a-zA-Z]+)/gm,
-	keyPressedPlayer: /function ([a-zA-Z]*)\(([a-zA-Z]*)\) \{\n\t*return keyPressed/m,
+	moveStrafe: /this\.([a-zA-Z]+)\s*=\s*\([a-zA-Z]+\.(up|down)/gm,
+	moveForward: /player\.serverMoveForward\s*=\s*player\.([a-zA-Z]+)/gm,
+	keyPressedPlayer: /function ([a-zA-Z]*)\(([a-zA-Z]*)\)\s*\{\n*\t*return keyPressed/m,
 	// World#getLivingEntityCount
-	entities: /this\.([a-zA-Z]*)\.values\(\)\) [a-zA-Z]* instanceof EntityLiving/m,
-	isInvisible: /[a-zA-Z]+\.([a-zA-Z]*)\(\)\) &&\n\t*\([a-zA-Z]* = new [a-zA-Z]*\(/m,
+	entities: /this\.([a-zA-Z]*)\.values\(\)\)\s*[a-zA-Z]* instanceof EntityLiving/m,
+	isInvisible: /[a-zA-Z]+\.([a-zA-Z]*)\(\)\)\s*&&\n*\t*\([a-zA-Z]*\s*=\s*new\s+[a-zA-Z]*\(/m,
 	attackTargetEntityWithCurrentItem: /hitVec.z,\n\t*\}\),\n\t*\}\),\n\t*\),\n\t*player.([a-zA-Z]*)\(/m,
 	lastReportedYaw: /this\.([a-zA-Z]*) *= *this\.yaw\),\n*\t*\(this\.last/m,
 	windowClick: /([a-zA-Z]*)\(this\.inventorySlots\.windowId/m,
