@@ -25,7 +25,7 @@ const REGEXES = {
 	// EntityBoat#update
 	normalizeAngle: /([a-zA-Z]+)\(([a-zA-Z]+)\s*-\s*this.yaw\)/,
 	// PlayerMovement#checkHeadInBlock
-	position: /BlockPos\.fromVector\(controls\.([a-zA-Z]+)\)/;
+	position: /BlockPos\.fromVector\(controls\.([a-zA-Z]+)\)/,
 	// World#getLivingEntityCount
 	entities: /this\.([a-zA-Z]*)\.values\(\)\)\s*[a-zA-Z]* instanceof EntityLiving/m,
 	isInvisible: /[a-zA-Z]+\.([a-zA-Z]*)\(\)\)\s*&&\n*\t*\([a-zA-Z]*\s*=\s*new\s+[a-zA-Z]*\(/m,
