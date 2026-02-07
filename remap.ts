@@ -43,7 +43,11 @@ const REGEXES = {
 	loadModels: /loadTextures\(\),*\n*\t*this\.[a-zA-Z]*\.([a-zA-Z]*)\(\)/m,
 	// Shader Manager
 	addShaderToMaterialWorld: /ShaderManager\.([a-zA-Z]*)\(this\.materialWorld/,
-	materialTransparentWorld: /this\.([a-zA-Z]*)\s*=\s*this\.materialTransparent\.clone\(/
+	materialTransparentWorld: /this\.([a-zA-Z]*)\s*=\s*this\.materialTransparent\.clone\(/,
+	potionAmplifiers: /PotionHelper\.([a-zA-Z]+)\.set\(Potions\.([a-zA-Z]+)\.getId\(\), "5"\)/,
+	getFlag: /([a-zA-Z]+)\(([a-zA-Z]+)\)\s*\{\n*\s*return\s+\(this\.dataWatcher\.getWatchableObjectByte\(0\) & \(1 << ([a-zA-Z]+)\)\) != 0/,
+	setFlag: /setSprinting\(u\)\s*\{\n*\s*this\.([a-zA-Z]+)\([0-9]+, ([a-zA-Z]+)\);/,
+	isInvisibleToPlayer: /([a-zA-Z]+)\(([a-zA-Z]+)\)\s*\{\n*\s*return\s+this\.isInvisible/
 };
 
 // pasted from Llama 3.3 70B on DuckDuckGo
