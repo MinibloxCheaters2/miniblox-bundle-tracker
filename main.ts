@@ -41,7 +41,7 @@ function isBoring(summary: DiffResult): [true, string] | [false] {
 	if (summary.deletions === summary.insertions) {
 		return [true, "deletion count == insertion count"];
 	}
-	if (summary.files.length == 1 && summary.files[0].file == "bundle.js") {
+	if (summary.files.length === 1 && summary.files[0].file === "bundle.js") {
 		return [true, "only changed unmapped bundle"];
 	}
 	return [false];
@@ -56,6 +56,7 @@ if (import.meta.main) {
 	const sg = simpleGit();
 	const diffSummary = await sg.diffSummary();
 	const [boring, boringReason] = isBoring(diffSummary);
+
 	if (boring)
 		console.info(`Bundle is boring (${boringReason}).`);
 
@@ -65,16 +66,20 @@ if (import.meta.main) {
 		.commit(
 			`chore: update bundle to ${id}${boring ? " [boring]" : ""}${
 				boringReason ? `\n(${boringReason})` : ""
-			}`,
-		);
-	const timePrefix = [
-		startDate.getUTCMonth() + 1,
-		startDate.getUTCDate(),
-		startDate.getUTCFullYear(),
-		"_",
-		startDate.getUTCHours(),
-		startDate.getUTCMinutes(),
-	].join("-");
-	sg.addTag(`${timePrefix}-${id}`);
-	sg.pushTags();
+			}`);
+
+	// changes only to bundle-remapped.js shouldn't be tagged,
+	// since they are usually i.e. maps being updated
+	if (diffSummary.files.length > 1 && diffSummary.files.some(f => f.file === "bundle.js")) {
+		const timePrefix = [
+			startDate.getUTCMonth() + 1,
+			startDate.getUTCDate(),
+			startDate.getUTCFullYear(),
+			"_",
+			startDate.getUTCHours(),
+			startDate.getUTCMinutes(),
+		].join("-");
+		sg.addTag(`${timePrefix}-${id}`);
+		sg.pushTags();
+	}
 }
